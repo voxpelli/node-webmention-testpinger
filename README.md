@@ -4,8 +4,9 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 
 ## Real world sites included
 
-* [Adactio.com](http://adactio.com/) by [Jeremy Keith](https://github.com/adactio)
-* [VoxPelli.com](http://voxpelli.com/) by me, [Pelle Wessman](https://github.com/voxpelli/)
+* [AaronParecki.com](aaronparecki.com/replies/2013/09/08/1/indiewebcampuk-webmention) by [Aaron Parecki](https://github.com/aaronpk)
+* [Adactio.com](http://adactio.com/journal/6495/) by [Jeremy Keith](https://github.com/adactio)
+* [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
 ## Usage
@@ -26,6 +27,10 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.2.3
+
+* Added WebMention example from [AaronParecki.com](aaronparecki.com/replies/2013/09/08/1/indiewebcampuk-webmention), thanks Aaron!
 
 ### 0.2.2
 
