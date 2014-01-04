@@ -4,7 +4,8 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 
 ## Real world sites included
 
-* [VoxPelli.com](http://voxpelli.com/)
+* [Adactio.com](http://adactio.com/) by [Jeremy Keith](https://github.com/adactio)
+* [VoxPelli.com](http://voxpelli.com/) by me, [Pelle Wessman](https://github.com/voxpelli/)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
 ## Usage
@@ -25,6 +26,12 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.2.0
+
+* Added proper CLI option parsing thanks to [noptify](https://npmjs.org/package/noptify) (and [nopt](https://npmjs.org/package/nopt))
+* Added binary to enable installation through NPM
+* Added WebMention example from [Adactio.com](http://adactio.com/), thanks Jeremy!
 
 ### 0.1.0
 

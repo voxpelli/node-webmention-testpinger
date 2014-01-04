@@ -1,7 +1,7 @@
 {
   "name": "webmention-testpinger",
   "description": "A tool to ping your site with a variety of webmention markup",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Pelle Wessman",
     "email": "pelle@kodfabrik.se",
