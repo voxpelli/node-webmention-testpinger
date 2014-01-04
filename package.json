@@ -2,6 +2,7 @@
   "name": "webmention-testpinger",
   "description": "A tool to ping your site with a variety of webmention markup",
   "version": "0.2.0",
+  "url": "http://github.com/voxpelli/node-webmention-testpinger",
   "author": {
     "name": "Pelle Wessman",
     "email": "pelle@kodfabrik.se",
@@ -16,6 +17,10 @@
   "engines": {
     "node": "0.10.x",
     "npm": "1.2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/voxpelli/node-webmention-testpinger.git"
   },
   "main": "./lib/main",
   "directories": {
