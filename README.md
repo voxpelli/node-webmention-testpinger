@@ -28,6 +28,10 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 
 ## Changelog
 
+### 0.2.4
+
+* Critical bug fix for listing the examples
+
 ### 0.2.3
 
 * Added WebMention example from [AaronParecki.com](aaronparecki.com/replies/2013/09/08/1/indiewebcampuk-webmention), thanks Aaron!
