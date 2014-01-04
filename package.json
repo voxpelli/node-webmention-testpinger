@@ -1,0 +1,24 @@
+{
+  "name": "webmention-testpinger",
+  "description": "A tool to ping your site with a variety of webmention markup",
+  "version": "0.1.0",
+  "author": {
+    "name": "Pelle Wessman",
+    "email": "pelle@kodfabrik.se",
+    "url": "http://kodfabrik.se/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "~3.4.7",
+    "request": "~2.30.0"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "main": "./lib/main",
+  "directories": {
+    "lib": "./lib"
+  },
+  "private": true
+}
