@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Adactio: Journal&mdash;Parsing webmentions</title>
+<meta name="description" content="Hell has frozen over …you can now comment on my site. But there’s a catch." />
+<meta name="author" content="Jeremy Keith" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index,follow" />
+<meta property="twitter:account_id" content="11250" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@adactio" />
+<meta name="twitter:site:id" content="11250" />
+<meta name="twitter:creator" content="@adactio" />
+<meta name="twitter:creator:id" content="11250" />
+<meta name="twitter:url" content="http://adactio.com/journal/6495/" />
+<meta name="twitter:title" content="Parsing webmentions" />
+<meta name="twitter:description" content="Hell has frozen over …you can now comment on my site. But there’s a catch." />
+<link rel="canonical" href="http://adactio.com/journal/6495/">
+<link rel="webmention" href="http://adactio.com/webmention.php" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://adactio.com/opensearch.xml" title="Adactio" />
+<link rel="openid.server" href="https://indieauth.com/openid" />
+<link rel="openid.delegate" href="http://adactio.com/" />
+<link rel="alternate" type="application/rss+xml" title="Journal RSS" href="/journal/rss" />
+<link rel="alternate" type="application/rss+xml" title="Links RSS" href="/links/rss" />
+<link rel="alternate" type="application/rss+xml" title="Articles RSS" href="/articles/rss" />
+<link rel="alternate" type="application/rss+xml" title="Journal, links and articles RSS" href="/rss/" />
+<link rel="author" href="/about/myself" title="About the author" />
+<link rel="Shortcut Icon" type="image/ico" href="/favicon.ico" />
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png" />
+<link rel="stylesheet" href="/skins/default/global.css" />
+<link rel="stylesheet" href="/includes/css/print.css" media="print" title="print" />
+
+<!-- Ah, I see you want a peek at the source code. -->
+<!-- That's the great thing about the web: -->
+<!-- reverse engineering. -->
+<!-- If you have any questions, feel free to write to me: -->
+<!-- jeremy at adactio dot com -->
+
+</head>
+<body>
+
+<header role="banner">
+
+<!-- Begin with the logo -->
+
+<div id="logo">
+<a href="http://adactio.com" accesskey="1" title="Home"><span>adactio</span></a>
+</div>
+
+
+<!-- Show any nice pictures here -->
+
+<div role="presentation">
+<div class="journal"></div>
+</div>
+
+<!-- Now we have the navigation -->
+
+<div role="navigation">
+
+<nav>
+<ul>
+<li><a class="here" href="/journal/" title="My thoughts and ramblings">Journal</a></li>
+<li><a href="/links/" title="Handpicked hyperlinks">Links</a></li>
+<li><a href="/articles/" title="Longer thoughts and ramblings">Articles</a></li>
+<li><a href="/about/" title="Background information">About</a></li>
+<li><a href="/contact/" accesskey="9" title="Get in touch">Contact</a></li>
+</ul>
+</nav>
+
+</div>
+
+</header>
+
+<!-- Here's the main content -->
+
+<div role="main">
+<article class="h-entry">
+
+<header>
+<h1 class="p-name">
+Parsing webmentions
+</h1>
+<h2>
+<time class="dt-published" datetime="2013-09-15T11:49:25">
+September 15th, 2013
+</time>
+</h2>
+</header>
+
+<div class="e-content">
+<p>Thanks to everyone who helped me <a href="http://adactio.com/journal/6469/">test webmentions</a> that I hacked together at <a href="http://indiewebcamp.com/">Indie Web Camp</a> last weekend.</p>
+
+<p>Let me explain what <a href="http://webmention.org/">web mentions</a> are all about…</p>
+
+<p>Basically, it’s an equivalent to pingback. Let’s say I write something here on adactio.com. Suppose that prompts you to write something in response on your own site. A <a href="http://webmention.org/">web mention</a> is a way for you to let me know that your response exists.</p>
+
+<p>If you look in the <code>head</code> of any of my journal posts, you’ll see this <code>link</code> element:</p>
+
+<pre><code>&lt;link rel="webmention" href="http://adactio.com/webmention.php" /&gt;
+</code></pre>
+
+<p>That’s my web mention endpoint: <a href="http://adactio.com/webmention.php">http://adactio.com/webmention.php</a> …it&#8217;s kind of like a <a href="http://en.wikipedia.org/wiki/Webhook">webhook</a>: a URL that’s intended to be hit by machines rather than people. So when you publish your response to my post, you ping that URL with a POST request that sends two parameters:</p>
+
+<ol>
+<li><code>target</code>: the URL of my post and</li>
+<li><code>source</code>: the URL of your response.</li>
+</ol>
+
+<p>Ideally your own CMS or blogging system would take care of doing the pinging, but until that’s more widely implemented, I’m providing <a href="https://gist.github.com/adactio/6575229">this form</a> at the end of each of my posts:</p>
+
+<script src="https://gist.github.com/adactio/6575229.js"></script>
+
+<p>Either way, once you ping my web mention endpoint—discoverable through that <code>link rel="webmention"</code>—with those two parameters, I just need to confirm that your post does indeed contain a link to my post—by making a <a href="http://en.wikipedia.org/wiki/CURL">cURL</a> request and parsing your source—and then I return a server response of 202 (Accepted).</p>
+
+<p>Here’s the code for <a href="https://gist.github.com/adactio/6484118">a minimum viable web mention in PHP</a>.</p>
+
+<script src="https://gist.github.com/adactio/6484118.js"></script>
+
+<p>That’s as far as I got at Indie Web Camp but it was enough for me to start collecting responses to posts.</p>
+
+<p><a href="http://www.flickr.com/photos/adactio/9739046079/"><img src="http://farm8.staticflickr.com/7292/9739046079_03c2f7a0e9_c.jpg" alt="Webmentions as links"></a></p>
+
+<p>The next step is to do something with the responses. After all, I’ve already got the source of each response from those cURL requests.</p>
+
+<p><a href="http://waterpigs.co.uk/">Barnaby</a> has a written a nice straightforward <a href="https://github.com/indieweb/php-mf2">microformats parser in PHP</a>. I’m using that to check the cURLed source for any responses that have been marked up using <a href="http://microformats.org/wiki/h-entry">h-entry</a>. That’s one of the <a href="http://microformats.org/wiki/microformats2">microformats 2</a> vocabularies—a much simpler way of writing structured content with microformats.</p>
+
+<p><a href="http://example.com/webmention/target/placeholder">Aaron</a>, <a href="http://caseorganic.com/replies/2013/09/09/1/">Amber</a>, and <a href="http://waterpigs.co.uk/notes/4RzBAg/">Barnaby</a> all sent responses that were marked up with <a href="http://microformats.org/wiki/h-entry">h-entry</a> so now their responses appear in full.</p>
+
+<p><a href="http://www.flickr.com/photos/adactio/9739045839/"><img src="http://farm8.staticflickr.com/7379/9739045839_44b74fcf90_c.jpg" alt="Webmentions as comments"></a></p>
+
+<p>So there you have it. Comments are now open on every <a href="http://adactio.com/journal">journal</a> post on adactio.com …the only catch is that you have to write the comment on your own site. And if you want the content of your post to appear here (instead of just a link) then update your blog post template to include a handful of <a href="http://microformats.org/wiki/h-entry">h-entry</a> classes.</p>
+
+<p>Feel free to use this post as a test. Mark up your blog with h-entry, write a post that links to this URL, and enter the URL of your post in the form below.</p>
+
+</div>
+
+<footer>
+<p class="meta">
+<time datetime="2013-09-15T11:49:25Z">
+11:49pm
+</time>
+</p>
+<p class="meta">
+Tagged with
+<a rel="tag" href="/journal/tags/indieweb">indieweb</a>
+<a rel="tag" href="/journal/tags/webmentions">webmentions</a>
+<a rel="tag" href="/journal/tags/microformats">microformats</a>
+<a rel="tag" href="/journal/tags/comments">comments</a>
+<a rel="tag" href="/journal/tags/blogging">blogging</a>
+<a rel="tag" href="/journal/tags/code">code</a>
+<a rel="tag" href="/journal/tags/parsing">parsing</a>
+</p>
+</footer>
+
+<div id="comment-container" class="hfeed">
+
+
+<form method="post" action="/webmention.php">
+<p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
+<input type="url" name="source" id="webmention-source" />
+<input type="hidden" name="target" value="http://adactio.com/journal/6495/" />
+<input type="submit" value="Ping!" />
+</form>
+
+<h2>Comments</h2>
+<article class="comment hentry" id="comment469">
+<div class="entry-content">
+
+<p>&quot;Parsing Webmentions&quot; by @adactio: <a href="http://adactio.com/journal/6495/">http://adactio.com/journal/6495/</a> A step-by-step explanation of how to receive #webmentions and incremental steps you can take afterwards like: * displaying links to posts that mention yours * displaying such posts in their entirety with attribution Well done Jeremy.</p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment469" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://tantek.com/2013/258/t1/parsing-webmentions-explanation-how-to-receive">
+Tantek Çelik
+</a>
+</cite>
+on
+<abbr class="published" title="2013-09-15T04:09:00">
+Sunday,
+September 15th, 2013
+at
+4:09pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment470">
+<div class="entry-content">
+
+<p>adactio: this is awesome! http://adactio.com/journal/6495/</p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment470" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://indiewebcamp.com/irc/2013-09-15/line/1379287306">
+aaronpk
+</a>
+</cite>
+on
+<abbr class="published" title="2013-09-15T04:21:46">
+Sunday,
+September 15th, 2013
+at
+4:21pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment471">
+<div class="entry-content">
+
+<p>Jeremy has recently <a href="http://adactio.com/journal/6495/">implemented Webmention on adactio.com</a>, and posted an explanation of the small piece of code involved. I I love the simplicity of <a href="http://webmention.org/">Webmention</a>, and I love the <a href="http://indiewebcamp.com/">Indieweb</a> idea of connecting our conversations in the simplest possible way whilst still publishing to our own sites, <a href="http://nomoresharecropping.org/">owning our data</a>. I intend to implement it on this site as soon as I can: both to test it out, and to offer a way of commenting without all the hassle of actually managing comments (sort of).</p>
+
+<p>I do have one teensy tiny criticism though: what&#8217;s that little bit of tech-specific junk doing in the Webmention URL, Jeremy? &#8220;Dot PHP&#8221;? Cool URI:s don&#8217;t change, but publishing platforms and script languages do, right? Excuse me sir, your CMS is showing! :-)</p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment471" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://thatemil.com/blog/2013/09/16/webmentioning-adactio/">
+Emil Björklund
+</a>
+</cite>
+on
+<abbr class="published" title="2013-09-16T10:24:01">
+Monday,
+September 16th, 2013
+at
+10:24am
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment472">
+<div class="entry-content">
+
+<p>In 2007 and 2011 I wrote a pair of articles where I tried to articulate my thoughts on what I saw as the dawning <em>social web</em>.  The earliest article was <a href="http://kevinbeynon.com/article/20/googles_open_social_facebook_myspace_project">about Google&#8217;s OpenSocial API</a>, and the latter, about what I saw as <a href="http://kevinbeynon.com/article/28/have_google_just_demonstrated_the_worlds_biggest_social_network">Google&#8217;s new social network</a>, built around profiles, <em>rel=me</em> and Buzz.</p>
+
+<p>Neither came to pass. OpenSocial died a slow, painful death, while Buzz was kicked in the teeth, then taken out back and shot. But, what they demonstrated was Google&#8217;s attempts at socialising the web itself. Of course, this dream died when Google+ was released as a Facebook-clone and Google returned to only being an advertising company.</p>
+
+<p>But, others have been continued working on freeing the web for us.</p>
+
+<p>IndieWeb</p>
+
+<p>Individuals like <a href="http://tantek.com/">Tantek Çelik</a>, <a href="http://waterpigs.co.uk/">Barnaby Walters</a>, <a href="http://adactio.com/">Jeremy Keith</a> and many others are tirelessly working on ensuring that the content <strong>we</strong> create is recognised as <strong>ours</strong>, controlled by <strong>us</strong> and, in the end, <strong>owned by us</strong>.  This work is best articulated by the <a href="http://indiewebcamp.com/principles">principles of the IndieWeb</a>.</p>
+
+<p>One of the latest pieces of work developed by Jeremy Keith is <a href="http://adactio.com/journal/6495/"><strong>webmentions</strong></a>.</p>
+
+<p>Webmentions</p>
+
+<p>Webmentions allows <em>conversations</em>, that would usually occur in comments, to take place on your own website. Pinging back responses to the original article allows readers to follow the discussion of articles and comments, while the content itself continues to be hosted on the respondent&#8217;s website and <em>owned by them</em> - fulfilling the IndieWeb principles.</p>
+
+<p>Google Buzz performed this kind of aggregation and connecting. It allowed conversations to happen across the web and be followed in one place.</p>
+
+<p>Webmentions picks up where Buzz left off and adds the ability to host the conversation itself to the mix.</p>
+
+<p>A fantastic tool that I can&#8217;t wait to implement on this site.</p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment472" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://kevinbeynon.com/article/34/webmentions_and_the_real_social_web">
+Kevin Beynon
+</a>
+</cite>
+on
+<abbr class="published" title="2013-09-16T11:36:01">
+Monday,
+September 16th, 2013
+at
+11:36am
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment473">
+<div class="entry-content">
+
+<p><a href="http://inkdroid.org/journal/2013/09/16/mentioning-webmention/">http://inkdroid.org/journal/2013/09/16/mentioning-webmention/</a></p>
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment473" rel="bookmark">#</a>
+Posted on
+<abbr class="published" title="2013-09-16T07:03:42">
+Monday,
+September 16th, 2013
+at
+7:03pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment476">
+<div class="entry-content">
+
+<p><a class="auto-link h-x-username" href="https://twitter.com/sandeepshetty">@sandeepshetty</a> <a class="auto-link h-x-username" href="https://twitter.com/pfefferle">@pfefferle</a> <a class="h-card" href="http://cweiske.de">cweiske</a> Something new to consider: <a class="h-card" data-at-name="adactio" href="http://http://adactio.com" rel="">Jeremy Keith</a> added a webmention sending form to his journal entries to help people who’s websites don’t support webmention already. Being able to test and use webmention through a human visible, interactable form is a huge benefit of using HTTP form encoded data.</p>
+
+<p>We can make this an even stronger case by encouraging success and error responses to be full HTML documents with helpful copy.</p>
+
+<p>See also
+* <a class="auto-link" href="http://tantek.com/2013/258/t2/web-protocols-should-use-http-params-no-xml">http://tantek.com/2013/258/t2/web-protocols-should-use-http-params-no-xml</a>
+* <a class="auto-link" href="http://adactio.com/journal/6469/">http://adactio.com/journal/6469/</a>
+* <a class="auto-link" href="http://adactio.com/journal/6495/">http://adactio.com/journal/6495/</a></p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment476" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://waterpigs.co.uk/notes/4SFH11/">
+Barnaby Walters
+</a>
+</cite>
+on
+<abbr class="published" title="2013-09-27T05:01:01">
+Friday,
+September 27th, 2013
+at
+5:01pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment478">
+<div class="entry-content">
+
+<p><a href="http://yatil.net/webmentions-adactiocom">http://yatil.net/webmentions-adactiocom</a></p>
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment478" rel="bookmark">#</a>
+Posted on
+<abbr class="published" title="2013-10-07T02:42:56">
+Monday,
+October 7th, 2013
+at
+2:42pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment480">
+<div class="entry-content">
+
+<p><a href="http://werd.io/">@benwerd</a> Thanks! Credit for the inline webmention box goes to <a href="http://adactio.com/">@adactio</a>! <a href="http://adactio.com/journal/6495/">http://adactio.com/journal/6495/</a>        </p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment480" rel="bookmark">#</a>
+Posted by
+<cite class="vcard author">
+<a class="url fn" href="http://aaronparecki.com/replies/2013/11/04/3/indieweb-webmention">
+Aaron Parecki
+</a>
+</cite>
+on
+<abbr class="published" title="2013-11-04T07:47:11">
+Monday,
+November 4th, 2013
+at
+7:47pm
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment483">
+<div class="entry-content">
+
+<p>This site does not have a way for readers to post comments under each article. And I plan not to implement a comment section. Instead, now Parallel Transport accepts <a href="http://webmention.org/">webmentions</a>, so you can write and publish responses on your own place on the web and link it back to the original article here. In fact this very article appears as <a href="http://adactio.com/journal/6495/#comment483">a response on Jeremy Keith’s post</a>.</p>
+
+<p>Comments &amp; Feedback
+Most comments are useless. They do not contribute much to the original content. They’re mostly one-line quips about liking or disliking the post. No context, no feedback, no thought. Having a comment form makes it very easy to post a random comment on some website. Combine that with the anonymity it affords, comment sections are breeding grounds for trolls, unconstructive arguments, flaming, name-calling, and shouting matches. No wonder <em>the bottom-half of the internet</em> is so despised.
+Second; why this expectation that every blog must be a discussion forum? Public discussions can be had on social platforms like Facebook, Twitter, Google+.
+If you really have some response to what I write, you can use email or catch me on one of the aforementioned social site places. Or better yet, write your <em>own</em> post about it on your <em>own</em> blog, site, journal, social-network-thingie!</p>
+
+<p>You write on your site; I write on mine. That’s a response.</p>
+
+<p>—John Gruber on <a href="http://daringfireball.net/2010/06/whats_fair">I’ll Tell You What’s Fair</a>If your response, adds something of value to the original content, I’ll post it here. I have transfered many such valued comments over from my old blog. Not all of them agreed with what I had to say, but they were considered responses, instead of just ‘I like it!’ or ‘This is shit!’.
+Webmention
+So suppose you have published a response on your own site. Webmention is a way to notify me of your response. You send the URL of your response along with the URL of my original article as a POST request to my web server. My server verifies that the response post exists and that it links to the original article.
+Now, I can do something with your response. I could simply link to it below my article, or repost your entire response. I have chosen to take a middle-ground and display a little snippet with a nice link back to your original post. If all goes well, you would have responded to my article with one of <em>your own</em>, published on <em>your own</em> site, and still have a discussion that links back and forth.
+Since, most web-publishing platforms don’t support sending mentions automatically, <a class="u-in-reply-to" href="http://adactio.com/journal/6495/">following Jeremy Keith</a>, I have a small form at the bottom of every article that you can use to send me the link to your response post.
+If you are interested in the details of how this works, take a look at <a href="http://webmention.org/">the webmention spec</a>, and the informative discussion at <a href="http://indiewebcamp.com/webmention">the IndieWeb</a>. If, like me, you use and love Python, <a href="http://vrypan.net/">Panayotis Vryonis</a> has written a <a href="https://github.com/vrypan/webmention-tools">good tool</a> to handle webmentions. You can also see <a href="https://github.com/kartikprabhu/webmention">my own webmention code</a>, which extends Vryonis’ webmentiontools to do a few more things. Feel free to make suggestions, test, extend and use it. And if you do, let me know. Or better yet, write about it and link it back here!</p>
+
+<p>Related reading:
+<a href="http://mattgemmell.com/2012/01/03/comments-still-off/">Comments still off</a> —Matt Gemmell
+<a href="http://sethgodin.typepad.com/seths_blog/2006/06/why_i_dont_have.html">Why I dont’t have comments</a> —Seth Godin
+<a href="http://blog.vrypan.net/2013/11/11/why-you-cant-comment-here/">Why you can’t comment here</a>—Panayotis Vryonis
+<a href="http://adactio.com/journal/6495/">Parsing webmentions</a> — Jeremy Keith. Also, read the wonderful webmention-ed articles at the end.
+<a href="http://indiewebcamp.com/principles">IndieWeb Principles</a>
+<a href="http://en.wikipedia.org/wiki/Linkback">Comparison table of linkback methods</a> on Wikipedia.</p>
+
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment483" rel="bookmark">#</a>
+<abbr class="published" title="2013-11-20T12:00:00">
+Wednesday,
+November 20th, 2013
+at
+12:00am
+</abbr>
+</p>
+</footer>
+
+</article>
+<article class="comment hentry" id="comment486">
+<div class="entry-content">
+
+<p><a href="http://colin.getbarley.com/6851/the-blog-isn-t-dead-it-is">http://colin.getbarley.com/6851/the-blog-isn-t-dead-it-is</a></p>
+
+</div>
+<footer>
+<p class="meta">
+<a href="#comment486" rel="bookmark">#</a>
+Posted on
+<abbr class="published" title="2013-12-19T05:17:02">
+Thursday,
+December 19th, 2013
+at
+5:17pm
+</abbr>
+</p>
+</footer>
+
+</article>
+
+</div>
+
+
+</article>
+</div>
+
+<div role="complementary">
+
+<h2>More information</h2>
+
+<!-- Begin the extra content -->
+
+<div class="box">
+
+<h3>About this site</h3>
+
+<address class="vcard h-card">
+<a href="http://adactio.com/" class="url u-url" rel="me">Adactio</a> is the online home of <a href="mailto:&#106;&#101;&#114;&#101;&#109;&#121;&#64;&#97;&#100;&#97;&#99;&#116;&#105;&#111;&#46;&#99;&#111;&#109;" class="email fn p-name u-email">Jeremy Keith</a>, a <span class="role p-role">web developer</span> and <span class="title p-job-title">author</span> living and working in <span class="adr p-adr"><span class="locality p-locality">Brighton</span>, <span class="country-name p-country-name">England</span></span>.
+</address>
+</div>
+
+<div class="box">
+
+<h3>Customise</h3>
+
+<form method="get" action="/journal/6495/" id="skinselection">
+<p>
+<label for="skin">Choose a theme&hellip;</label><br />
+<select name="skin" id="skin">
+<option value="default" selected="selected">default</option>
+<option value="tatemodern">tatemodern</option>
+<option value="seaside">seaside</option>
+<option value="zeldman">zeldman</option>
+<option value="adactizilla">adactizilla</option>
+<option value="sci-fi">sci-fi</option>
+<option value="renaissance">renaissance</option>
+<option value="hirnlego">hirnlego</option>
+</select>
+<input type="submit" value="Go!" id="submitskin" />
+<a href="/about/site/" title="what is this?">?</a>
+</p>
+</form>
+<p>This is the plain vanilla look.</p>
+
+</div>
+
+<div class="box">
+
+<h3>Search</h3>
+
+<form action="/journal/search/" method="get" role="search">
+<p><label for="query">Search the journal:</label><br /><input accesskey="4" type="search" name="query" id="query" value="" />
+<input type="submit" value="Go!" /></p>
+</form>
+<ul>
+<li>Peruse the <a rel="contents" href="/journal/archive/" title="chronologically ordered">archive</a></li>
+<li>Browse the <a href="/journal/tags/">tags</a></li>
+</ul>
+
+</div>
+<div class="box">
+
+<h3>Subscribe</h3>
+
+<p>You can subscribe to the <a href="/journal/rss" rel="alternate" type="application/rss+xml" title="Journal RSS">journal RSS feed</a>.</p>
+
+</div>
+
+<div class="box">
+
+<h3>Recommended reading</h3>
+<p>Hand-picked highlights from the archive.</p>
+<ul>
+<li>
+<h4><a href="/journal/1283/">Hyperdrive</a></h4>
+Last night in San Francisco.
+</li>
+<li>
+<h4><a href="/journal/1357/">The password anti-pattern</a></h4>
+It’s time we took a stand: let’s stop teaching people how to be phished.
+</li>
+<li>
+<h4><a href="/journal/1376/">Design doing</a></h4>
+The opposite of design thinking.
+</li>
+<li>
+<h4><a href="/journal/1530/">Iron Man and me</a></h4>
+The story of how one of my Flickr pictures came to be used in a Hollywood movie.
+</li>
+</ul>
+
+</div>
+<div class="box">
+
+<h3>Elsewhere</h3>
+
+<p>You can find me scattered across these sites:</p>
+
+<ul>
+<li>Podcasting on <a rel="me" href="http://huffduffer.com/adactio" title="what I'm listening to">Huffduffer</a></li>
+<li>Updating <a rel="me" href="https://twitter.com/adactio" title="what I'm doing">Twitter</a></li>
+<li>Putting pictures on <a rel="me" href="http://www.flickr.com/people/adactio" title="photographs I've taken">Flickr</a></li>
+<li>Collecting on <a rel="me" href="http://adactio.tumblr.com/" title="quotes and videos">Tumblr</a></li>
+<li>Curating on <a rel="me" href="http://ffffound.com/home/adactio/found" title="images, collected">Ffffound</a></li>
+<li>Gathering at <a rel="me" href="http://readlists.com/user/adactio" title="articles, bundled">Readlists</a></li>
+<li>Speaking on <a rel="me" href="http://lanyrd.com/people/adactio" title="conferences, attended">Lanyrd</a></li>
+<li>Snapping to <a rel="me" href="http://instagram.com/adactio" title="phone photos">Instagram</a></li>
+<li>Coding on <a rel="me" href="https://github.com/adactio" title="code projects">Github</a></li>
+<li>Teasing on <a rel="me" href="http://dribbble.com/adactio" title="sneak peaks">Dribbble</a></li>
+<li>Clipping to <a rel="me" href="https://findings.com/adactio" title="quotations">Findings</a></li>
+<li>Broadcasting with <a rel="me" href="http://www.last.fm/user/adactio" title="my music">Last.fm</a></li>
+<li>Uploading to <a rel="me" href="http://www.vimeo.com/user196031" title="videos">Vimeo</a></li>
+</ul>
+
+</div>
+
+<div class="box">
+
+<h3>Bedroll</h3>
+
+<p>I had the pleasure of welcoming these people into my home:</p>
+
+<ul>
+<li class="vcard">
+<a class="fn url" href="http://www.easy-reader.net/" rel="friend met colleague">Aaron Gustafson</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://ben-ward.co.uk/" rel="friend met colleague">Ben Ward</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://suda.co.uk/" rel="friend met colleague">Brian Suda</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://themaninblue.com/" rel="friend met colleague">Cameron Adams</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://cindyli.com/" rel="friend met colleague">Cindy Li</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://boudist.com/" rel="friend met">Daniel Boud</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://deltatangobravo.com/" rel="friend met colleague">Daniel Burka</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://superfluousbanter.org/" rel="friend met colleague">Dan Rubin</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://mezzoblue.com/" rel="friend met colleague">Dave Shea</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://boxofchocolates.ca/" rel="friend met colleague">Derek Featherstone</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://schepers.cc/" rel="friend met colleague">Doug Schepers</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://drinkerthinker.com/" rel="friend met colleague">Elizabeth Galle</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://elsakawai.com/" rel="friend met colleague">Elsa Kawai</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://ebdesign.se/" rel="friend met colleague">Emil Bj&ouml;rklund</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.erinjorichey.com/" rel="friend met colleague">Erin Jo Richey</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://unstoppablerobotninja.com/" rel="friend met colleague">Ethan Marcotte</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://fberriman.com/" rel="friend met colleague">Frances Berriman</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://blog.hannahdonovan.com/" rel="friend met colleague">Hannah Donovan</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.indiyoung.com/" rel="acquaintance met colleague">Indi Young</a>
+</li>
+<li class="vcard">
+<a class="fn n url" href="http://jasonsantamaria.com/" rel="friend met colleague"><span class="given-name">Jason</span> <span class="family-name">Santa Maria</span></a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.blackphoebe.com/" rel="friend met colleague">Jenifer Hanen</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://jinabolton.com/" rel="friend met colleague">Jina Bolton</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://fawny.org/" rel="friend met colleague">Joe Clark</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://subism.com/" rel="friend met colleague">John Morrison</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://binarytales.co.uk" rel="friend met colleague">Jon Linklater-Johnson</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://scenariogirl.com/" rel="friend met colleague">Lisa Herrod</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.lyza.com/" rel="friend met colleague">Lyza Danger Gardner</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://aworkinglibrary.com/" rel="friend met colleague">Mandy Brown</a>
+</li>
+<li class="vcard">
+<a class="fn n url" href="http://marknormanfrancis.com/" rel="friend met colleague"><span class="given-name">Mark</span> <span class="additional-name">Norman</span> <span class="family-name">Francis</span></a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://themattharris.com/" rel="friend met colleague">Matt Harris</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://dracos.co.uk/" rel="friend met colleague">Matthew Somerville</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.marxandmarzipan.com/" rel="friend met colleague">Maxine Sherrin</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://molly.com/" rel="friend met colleague">Molly Holzschlag</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://notes.natbat.net/" rel="friend met colleague">Natalie Downe</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://sonspring.com/" rel="acquaintance met colleague">Nathan Smith</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://htmldog.com/" rel="friend met colleague">Patrick Griffiths</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://petragregorova.com/" rel="friend met colleague">Petra Gregorová</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://simonwillison.net/" rel="friend met colleague">Simon Willison</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://stephaniehobson.ca/" rel="friend met colleague">Stephanie Hobson</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://tantek.com/" rel="friend met colleague">Tantek &Ccedil;elik</a>
+</li>
+<li class="vcard">
+<a class="fn url" href="http://www.pollenation.net/journal/tim" rel="acquaintance met colleague">Tim Parkin</a>
+</li>
+</ul>
+
+</div>
+
+<div class="box">
+
+<h3>Read my book</h3>
+
+<p><a href="http://html5forwebdesigners.com/" rel="me"><img src="/images/html5_cover_small.gif" alt="HTML5 for Web Designers" /></a></p>
+
+</div>
+
+</div>
+
+
+<!-- The large print giveth and the small print taketh away -->
+
+<div role="contentinfo">
+<footer>
+<p>&copy; 1998 - 2014 <a href="mailto:&#106;&#101;&#114;&#101;&#109;&#121;&#64;&#97;&#100;&#97;&#99;&#116;&#105;&#111;&#46;&#99;&#111;&#109;" title="jeremy&#064;adactio.com">Jeremy Keith</a>.</p>
+</footer>
+</div>
+
+<script src="/includes/javascript/global.js" defer="defer"></script>
+<script src="/mint/?js"></script>
+</body>
+</html>
