@@ -27,6 +27,10 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 
 ## Changelog
 
+### 0.2.1
+
+* Minor fixes to improve the publishing on NPM
+
 ### 0.2.0
 
 * Added proper CLI option parsing thanks to [noptify](https://npmjs.org/package/noptify) (and [nopt](https://npmjs.org/package/nopt))
