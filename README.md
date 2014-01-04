@@ -12,11 +12,11 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 
 First install the NPM-dependencies:
 
-    npm install
+    npm install -g webmention-testpinger
 
 Then run by doing:
 
-    node . URL-TO-HUB URL-TO-MENTION
+    webmention-testpinger --endpoint=http://example.com/endpoint --target=http://example.com/target
 
 This tool will spin up a server on port 8080 (or the port defined in the PORT environment variable) and then ping the specified WebMentions hub with a URL to that server or each real world example which will return a copy of that example with a placeholder URL replaced with the requested mention target. After all pinged mentions has been fetched it will shut down the server and finish its execution.
 
@@ -26,6 +26,10 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.2.2
+
+* Updated example on how to install and use
 
 ### 0.2.1
 
