@@ -21,7 +21,13 @@ Then run by doing:
 
     webmention-testpinger --endpoint=http://example.com/endpoint --target=http://example.com/target
 
-This tool will spin up a server on port 8080 (or the port defined in the PORT environment variable) and then ping the specified WebMentions hub with a URL to that server or each real world example which will return a copy of that example with a placeholder URL replaced with the requested mention target. After all pinged mentions has been fetched it will shut down the server and finish its execution.
+This tool will spin up a server on port 8080 and then ping the specified WebMentions hub with a URL to that server or each real world example which will return a copy of that example with a placeholder URL replaced with the requested mention target. After all pinged mentions has been fetched it will shut down the server and finish its execution.
+
+## Options
+
+To list all available options, run:
+
+    webmention-testpinger --help
 
 ## Requirements
 
@@ -29,6 +35,13 @@ This tool will spin up a server on port 8080 (or the port defined in the PORT en
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.3.0
+
+* Added new option, --fetches/-f, to configure how many times each mention should be fetched before the tool closes down. Defaults to 1.
+* Added new option, --sync/-s, to provide alternative to --fetches where the tool keeps running until all ping requests has recieved responses.
+* Changed how port number is set, now done through new option --port/-p rather than through an enviromental variable.
+* Added WebMention example from [notizBlog.org](https://notizblog.org/2014/01/16/bridgy-webmentions-fuer-twitter-und-facebook/), thanks Matthias!
 
 ### 0.2.5
 
