@@ -36,6 +36,10 @@ To list all available options, run:
 
 ## Changelog
 
+### 0.3.1
+
+* Fixed error message regarding fetch of missing template
+
 ### 0.3.0
 
 * Added new option, --fetches/-f, to configure how many times each mention should be fetched before the tool closes down. Defaults to 1.
