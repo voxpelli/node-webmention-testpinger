@@ -41,6 +41,7 @@ To list all available options, run:
 * Added new option, --fetches/-f, to configure how many times each mention should be fetched before the tool closes down. Defaults to 1.
 * Added new option, --sync/-s, to provide alternative to --fetches where the tool keeps running until all ping requests has recieved responses.
 * Changed how port number is set, now done through new option --port/-p rather than through an enviromental variable.
+* Ensured that all instances of the placeholder URL is replaced
 * Added WebMention example from [notizBlog.org](https://notizblog.org/2014/01/16/bridgy-webmentions-fuer-twitter-und-facebook/), thanks Matthias!
 
 ### 0.2.5
