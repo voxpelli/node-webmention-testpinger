@@ -8,9 +8,9 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 * [Adactio.com](http://adactio.com/journal/6495/) by [Jeremy Keith](https://github.com/adactio)
 * [Brid.gy](http://brid.gy/) by [Ryan Barrett](https://github.com/snarfed) (Example code from [here](https://brid-gy.appspot.com/repost/twitter/pfefferle/423744359297585152/423756080376995840))
 * [notizBlog.org](https://notizblog.org/2014/01/16/bridgy-webmentions-fuer-twitter-und-facebook/) by [Matthias Pfefferle](https://github.com/pfefferle)
-* [sandeep.io](http://www.sandeep.io/103) by [Sandeep Shetty](https://github.com/sandeepshetty)
-* [tantek.com](http://tantek.com/2014/139/t1/going-homebrew-website-club-indieweb) by [Tantek Çelik](https://github.com/tantek)
-* [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/)
+* [Sandeep.io](http://www.sandeep.io/103) by [Sandeep Shetty](https://github.com/sandeepshetty) (A special [like mention](http://indiewebcamp.com/like))
+* [Tantek.com](http://tantek.com/2014/139/t1/going-homebrew-website-club-indieweb) by [Tantek Çelik](https://github.com/tantek)
+* [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/) (With an added &lt;base&gt; tag to resolve the avatar correctly)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
 ## Usage
@@ -37,6 +37,12 @@ To list all available options, run:
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.3.2
+
+* Added a special [like](http://indiewebcamp.com/like) WebMention example from [sandeep.io](http://www.sandeep.io/103), thanks Sandeep!
+* Added WebMention example from [Tantek.com](http://tantek.com/2014/139/t1/going-homebrew-website-club-indieweb), thanks Tantek!
+* Changed the VoxPelli.com example to contain a &lt;base&gt; tag so that the relative avatar it uses can be resolved to voxpelli.com even though the site is served from the test server
 
 ### 0.3.1
 
