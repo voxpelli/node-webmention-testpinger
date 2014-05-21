@@ -8,6 +8,8 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 * [Adactio.com](http://adactio.com/journal/6495/) by [Jeremy Keith](https://github.com/adactio)
 * [Brid.gy](http://brid.gy/) by [Ryan Barrett](https://github.com/snarfed) (Example code from [here](https://brid-gy.appspot.com/repost/twitter/pfefferle/423744359297585152/423756080376995840))
 * [notizBlog.org](https://notizblog.org/2014/01/16/bridgy-webmentions-fuer-twitter-und-facebook/) by [Matthias Pfefferle](https://github.com/pfefferle)
+* [sandeep.io](http://www.sandeep.io/103) by [Sandeep Shetty](https://github.com/sandeepshetty)
+* [tantek.com](http://tantek.com/2014/139/t1/going-homebrew-website-club-indieweb) by [Tantek Çelik](https://github.com/tantek)
 * [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
