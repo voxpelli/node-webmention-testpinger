@@ -38,6 +38,11 @@ To list all available options, run:
 
 ## Changelog
 
+### 0.3.3
+
+* Improved console messages. Now eg. color coded and have timestamps – the latter can be useful when eg. testing a throttling mechanism
+* Improved handling of failed pings in non-sync flow – sometimes the server didn't close itself
+
 ### 0.3.2
 
 * Added a special [like](http://indiewebcamp.com/like) WebMention example from [sandeep.io](http://www.sandeep.io/103), thanks Sandeep!

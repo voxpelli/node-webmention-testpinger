@@ -1,7 +1,7 @@
 {
   "name": "webmention-testpinger",
   "description": "A tool to ping your site with a variety of webmention markup",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "url": "http://github.com/voxpelli/node-webmention-testpinger",
   "author": {
     "name": "Pelle Wessman",
@@ -10,9 +10,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "chalk": "^0.4.0",
     "express": "~3.4.7",
-    "request": "~2.31.0",
-    "noptify": "0.0.3"
+    "noptify": "0.0.3",
+    "request": "~2.31.0"
   },
   "engines": {
     "node": "0.10.x"
@@ -28,5 +29,5 @@
   "bin": {
     "webmention-testpinger": "bin/cli"
   },
-  "preferGlobal" : true
+  "preferGlobal": true
 }
