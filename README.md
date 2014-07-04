@@ -13,9 +13,9 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 * [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/) (With an added &lt;base&gt; tag to resolve the avatar correctly)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
-## Usage
+## Usage on CLI
 
-First install the NPM-dependencies:
+First install from NPM:
 
     npm install -g webmention-testpinger
 
@@ -25,18 +25,52 @@ Then run by doing:
 
 This tool will spin up a server on port 8080 and then ping the specified WebMentions hub with a URL to that server or each real world example which will return a copy of that example with a placeholder URL replaced with the requested mention target. After all pinged mentions has been fetched it will shut down the server and finish its execution.
 
-## Options
+### Options
 
 To list all available options, run:
 
     webmention-testpinger --help
 
-## Requirements
+## Usage in Node.js project
+
+First add it from NPM:
+
+    npm install webmention-testpinger --save-dev
+
+Then require it and set it up:
+
+```javascript
+var WebMentionTemplates = require('webmention-testpinger').WebMentionTemplates;
+
+var templateCollection = new WebMentionTemplates();
+
+templateCollection.getTemplateNames().then(function (templateNames) {
+  // "templateNames" contains an array of the names of all available templates
+});
+
+templateCollection.getTemplate(templateName, templateTarget).then(function (template) {
+  // "template" contains the rendered HTML for the template with the name "templateName"
+  // and has its webmention targeted at the "templateTarget" target URL
+});
+```
+
+### Options
+
+One can send an object into `new WebMentionTemplates()` to define some options. The possible ones are:
+
+* **templatePath** – an absolute path to a folder in which a bunch of templates can be found
+
+## Requirements for CLI
 
 * Node.js (with npm)
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.4.0
+
+* Refactored the code to make it possible to require the template code from a Node.js project, thus making it possible to utilize the same templates as the CLI-tool within an automated test suite.
+* DX-enchancement: Grunt + linting tools added to keep track of coding style
 
 ### 0.3.3
 

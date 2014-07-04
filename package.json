@@ -1,7 +1,7 @@
 {
   "name": "webmention-testpinger",
   "description": "A tool to ping your site with a variety of webmention markup",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "url": "http://github.com/voxpelli/node-webmention-testpinger",
   "author": {
     "name": "Pelle Wessman",
@@ -31,7 +31,6 @@
   "bin": {
     "webmention-testpinger": "bin/cli"
   },
-  "preferGlobal": true,
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
