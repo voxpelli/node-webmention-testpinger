@@ -67,6 +67,12 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 
 ## Changelog
 
+### 0.4.1
+
+* Includes the HTTP code for a failure response and if there's a Retry-After header – print it
+* Uses the new `chalk.dim()` rather than `chalk.grey()` for the dim parts of the log – timestamp etc.
+* Updated some dependencies
+
 ### 0.4.0
 
 * Refactored the code to make it possible to require the template code from a Node.js project, thus making it possible to utilize the same templates as the CLI-tool within an automated test suite.
