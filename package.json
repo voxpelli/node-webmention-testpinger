@@ -1,7 +1,7 @@
 {
   "name": "webmention-testpinger",
   "description": "A tool to ping your site with a variety of webmention markup",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "url": "http://github.com/voxpelli/node-webmention-testpinger",
   "author": {
     "name": "Pelle Wessman",
