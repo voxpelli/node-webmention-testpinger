@@ -13,6 +13,10 @@ A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com
 * [VoxPelli.com](http://voxpelli.com/2013/12/webmentions-for-static-pages/) by me, [Pelle Wessman](https://github.com/voxpelli/) (With an added &lt;base&gt; tag to resolve the avatar correctly)
 * Your site? Send a pull request with a copy of your WebMention page in the templates directory with the mention target set to "http://example.com/webmention/target/placeholder"
 
+## Test suites included
+
+* [checkmention](https://checkmention.appspot.com/) by [KB Sriram](https://github.com/kbsriram), includes [the two xss tests](https://github.com/kbsriram/checkmention/tree/839d52b8138d53ddb2509779e5adf873a5852e9b/src/WEB-INF/checks)
+
 ## Usage on CLI
 
 First install from NPM:
@@ -66,6 +70,10 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 * Local copy of the hub you want to ping
 
 ## Changelog
+
+### 0.4.2
+
+* Added all templates from @kbsriram's [checkmention](https://github.com/kbsriram/checkmention) project
 
 ### 0.4.1
 
