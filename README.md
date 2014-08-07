@@ -71,6 +71,10 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 
 ## Changelog
 
+### 0.4.3
+
+* Fix for when a ping request times out
+
 ### 0.4.2
 
 * Added all templates from @kbsriram's [checkmention](https://github.com/kbsriram/checkmention) project
