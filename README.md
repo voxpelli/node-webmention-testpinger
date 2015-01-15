@@ -75,6 +75,7 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 
 * Fix for when a ping request times out
 * Two new basic templates for [interaction](http://indiewebcamp.com/interactions) mentions
+* New feature for multiple mentions (through multiple `--target` CLI options) and a new basic template that make use of multiple mentions. Old templates are still single-mention.
 
 ### 0.4.2
 
