@@ -71,7 +71,7 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 
 ## Changelog
 
-### 0.4.3
+### 0.5.0
 
 * Fix for when a ping request times out
 * Two new basic templates for [interaction](http://indiewebcamp.com/interactions) mentions
