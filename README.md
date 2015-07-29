@@ -71,6 +71,10 @@ One can send an object into `new WebMentionTemplates()` to define some options. 
 
 ## Changelog
 
+### 0.5.1
+
+* Fix: Basic templates now includes a "u-url" property to avoid eg. the reply to link to be implied entry URL
+
 ### 0.5.0
 
 * Fix for when a ping request times out
