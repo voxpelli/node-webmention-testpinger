@@ -13,7 +13,6 @@
     "chalk": "~0.5.1",
     "denodeify": "^1.2.1",
     "express": "~3.4.7",
-    "lodash": "^2.4.1",
     "noptify": "0.0.3",
     "request": "~2.31.0"
   },
