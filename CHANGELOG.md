@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+* Breaking: Now requires Node 6
+* Upgrade: Replaced linting system and moved to the [semistandard](https://github.com/Flet/semistandard) + [ESLint](http://eslint.org/) linting system
+* Upgrade: Updated all actual dependencies + removed Promise polyfill and Lodash as they are not needed anymore with the ES6-features of Node 6
+
 ## 0.5.2
 
 * Minor feature: Set a custom hostname that will be used for pings
