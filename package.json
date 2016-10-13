@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "~0.5.1",
+    "chalk": "^1.0.0",
     "denodeify": "^1.2.1",
     "express": "~3.4.7",
     "noptify": "0.0.3",
