@@ -18,7 +18,7 @@
     "request": "~2.31.0"
   },
   "engines": {
-    "node": ">=0.10.x"
+    "node": ">=6.0.0"
   },
   "repository": {
     "type": "git",
@@ -31,11 +31,17 @@
   "bin": {
     "webmention-testpinger": "bin/cli"
   },
+  "scripts": {
+    "dependency-check": "JS_FILES=\"lib/*.js\" && dependency-check . $JS_FILES && dependency-check . $JS_FILES --unused --no-dev",
+    "test": "installed-check -e && eslint . && npm run dependency-check"
+  },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-lintspaces": "~0.6.0",
-    "grunt-notify": "~0.3.0"
+    "dependency-check": "^2.6.0",
+    "eslint": "^3.4.0",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "installed-check": "^2.0.0"
   }
 }
