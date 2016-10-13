@@ -12,7 +12,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "denodeify": "^1.2.1",
-    "express": "~3.4.7",
+    "express": "^4.0.0",
     "noptify": "0.0.3",
     "request": "~2.31.0"
   },
