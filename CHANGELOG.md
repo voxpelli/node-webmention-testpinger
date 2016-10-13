@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+* Minor feature: Set a custom hostname that will be used for pings
+
 ## 0.5.1
 
 * Fix: Basic templates now includes a "u-url" property to avoid eg. the reply to link to be implied entry URL
