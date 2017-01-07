@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+* Feature: New Brid.gy-based Emoji template
+
 ## 0.6.0
 
 * Breaking: Now requires Node 6
