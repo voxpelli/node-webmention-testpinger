@@ -14,7 +14,7 @@
     "denodeify": "^1.2.1",
     "express": "^4.0.0",
     "noptify": "0.0.3",
-    "request": "~2.75.0"
+    "request": "^2.75.0"
   },
   "engines": {
     "node": ">=6.0.0"
