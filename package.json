@@ -35,12 +35,12 @@
     "test": "installed-check -e && eslint . && npm run dependency-check"
   },
   "devDependencies": {
-    "dependency-check": "^2.6.0",
-    "eslint": "^3.4.0",
-    "eslint-config-semistandard": "^7.0.0",
-    "eslint-config-standard": "^6.0.0",
-    "eslint-plugin-promise": "^3.0.0",
-    "eslint-plugin-standard": "^2.0.0",
-    "installed-check": "^2.0.0"
+    "dependency-check": "2.10.1",
+    "eslint": "3.19.0",
+    "eslint-config-semistandard": "7.0.0",
+    "eslint-config-standard": "6.2.1",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "2.3.1",
+    "installed-check": "2.1.3"
   }
 }
