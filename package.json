@@ -35,7 +35,7 @@
     "test": "installed-check -e && eslint . && npm run dependency-check"
   },
   "devDependencies": {
-    "dependency-check": "3.1.0",
+    "dependency-check": "3.2.0",
     "eslint": "3.19.0",
     "eslint-config-semistandard": "7.0.0",
     "eslint-config-standard": "6.2.1",
