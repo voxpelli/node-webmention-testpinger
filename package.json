@@ -32,15 +32,17 @@
   },
   "scripts": {
     "dependency-check": "JS_FILES=\"lib/*.js\" && dependency-check . $JS_FILES && dependency-check . $JS_FILES --unused --no-dev",
-    "test": "installed-check -e && eslint . && npm run dependency-check"
+    "test": "installed-check -e -i eslint && eslint . && npm run dependency-check"
   },
   "devDependencies": {
-    "dependency-check": "3.3.0",
-    "eslint": "4.18.2",
-    "eslint-config-semistandard": "7.0.0",
-    "eslint-config-standard": "6.2.1",
-    "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-standard": "2.3.1",
+    "dependency-check": "3.4.1",
+    "eslint": "6.0.1",
+    "eslint-config-semistandard": "14.0.0",
+    "eslint-config-standard": "13.0.1",
+    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-node": "9.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.0",
     "installed-check": "2.2.0"
   }
 }
