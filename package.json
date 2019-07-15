@@ -36,11 +36,11 @@
   },
   "devDependencies": {
     "dependency-check": "3.3.0",
-    "eslint": "4.18.2",
-    "eslint-config-semistandard": "7.0.0",
-    "eslint-config-standard": "6.2.1",
-    "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-standard": "2.3.1",
+    "eslint": "6.0.1",
+    "eslint-config-semistandard": "14.0.0",
+    "eslint-config-standard": "13.0.1",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.0",
     "installed-check": "2.2.0"
   }
 }
