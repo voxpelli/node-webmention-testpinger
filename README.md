@@ -1,5 +1,10 @@
 # WebMention Test Pinger
 
+[![npm version](https://img.shields.io/npm/v/webmention-testpinger.svg?style=flat)](https://www.npmjs.com/package/webmention-testpinger)
+[![npm downloads](https://img.shields.io/npm/dm/webmention-testpinger.svg?style=flat)](https://www.npmjs.com/package/webmention-testpinger)
+[![Module type: CJS](https://img.shields.io/badge/module%20type-cjs-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
+[![Follow @voxpelli@mastodon.social](https://img.shields.io/mastodon/follow/109247025527949675?domain=https%3A%2F%2Fmastodon.social&style=social)](https://mastodon.social/@voxpelli)
+
 A tool to ping your site with a variety of [WebMentions](http://indiewebcamp.com/webmention) markup. Contains copies of a couple of real world examples of mentions that it enables you to ping locally to a development copy of your site.
 
 ## Real world sites included
