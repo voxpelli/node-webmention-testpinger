@@ -1,14 +1,16 @@
+# Basic ones
+/coverage
+/coverage-ts
+/node_modules
+/.env
+/.nyc_output
+
+# We're a library, so please, no lock files
+/package-lock.json
+/yarn.lock
+
+# Library specific ones
+
 # Ignoring a .gitignore in /templates enables a user to add a .gitignore in there that ignores specific templates it
 # doesn't want to commit without that meaning that it will have uncommitted changes always.
 /templates/.gitignore
-
-# Of course we don't want to commit our dependencies
-/node_modules
-
-# We're a library, so no yarn.lock either
-/yarn.lock
-
-# These files we should skip as well
-.DS_Store
-npm-debug.log
-yarn-error.log

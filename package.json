@@ -17,7 +17,7 @@
     "request": "^2.75.0"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=16.0.0"
   },
   "repository": {
     "type": "git",
@@ -31,11 +31,14 @@
     "webmention-testpinger": "bin/cli"
   },
   "scripts": {
-    "dependency-check": "JS_FILES=\"lib/*.js\" && dependency-check . $JS_FILES && dependency-check . $JS_FILES --unused --no-dev",
-    "test": "installed-check -e -i eslint && eslint . && npm run dependency-check"
+    "check:dependency-check": "dependency-check 'lib/*.js' --no-dev",
+    "check:installed-check": "installed-check",
+    "check:lint": "eslint --report-unused-disable-directives .",
+    "check": "run-p check:*",
+    "test": "run-s check"
   },
   "devDependencies": {
-    "dependency-check": "3.4.1",
+    "dependency-check": "^4.1.0",
     "eslint": "6.8.0",
     "eslint-config-semistandard": "14.0.0",
     "eslint-config-standard": "13.0.1",
@@ -43,6 +46,7 @@
     "eslint-plugin-node": "9.2.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "installed-check": "2.2.0"
+    "installed-check": "^7.0.0",
+    "npm-run-all2": "^6.0.5"
   }
 }
